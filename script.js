@@ -100,14 +100,23 @@ const calcDisplayBalance = function (movements) {
 
 calcDisplayBalance(account1.movements);
 
-// to display deposited amount in an acoount on webpage
+
 
 const calcDisplaySummary = function (movements) {
+  // to display deposited amount in an acoount on webpage
+
   const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = ` ${incomes} €`
+  // to display thr total amount which goes out of an acoount
+
+  const out = movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0);
+  // We take the absolue value of the negative total amount , hence used math.abs()
+  labelSumOut.textContent = ` ${Math.abs(out)} €`
 }
 
 calcDisplaySummary(account1.movements);
+
+
 
 
 
