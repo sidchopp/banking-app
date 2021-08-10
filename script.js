@@ -90,6 +90,17 @@ const createUsernames = function (accts) {
 createUsernames(accounts);
 console.log(accounts);
 
+// to add the values of movements in a an account and show te total on webpage
+
+const calcDisplayBalance = function (movements) {
+
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  // console.log(balance);
+  labelBalance.textContent = `${balance} EUROS`;
+};
+
+calcDisplayBalance(account1.movements);
+
 
 
 // to convert Euros to USD using MAP method
