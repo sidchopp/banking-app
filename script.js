@@ -112,7 +112,16 @@ const calcDisplaySummary = function (movements) {
   const out = movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0);
   // We take the absolue value of the negative total amount , hence used math.abs()
   labelSumOut.textContent = ` ${Math.abs(out)} €`
+
+  // to calculate the interest of 1.2% ,say on each deposit and then get the total interest
+
+  const interest = movements.filter(mov => mov > 0).map(deposit => deposit * 1.2 / 100).reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = ` ${interest} €`;
+
+
 }
+
+
 
 calcDisplaySummary(account1.movements);
 
