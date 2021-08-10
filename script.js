@@ -79,7 +79,7 @@ const displayMovements = function (movements) {
 // calling the above function for 'account1' object and its 'movement' property
 displayMovements(account1.movements);
 
-// to create a new property called "usename" in each account
+// to create a new property called "username" in each account
 
 const createUsernames = function (accts) {
   accts.forEach(function (acc) {
@@ -135,6 +135,26 @@ const calcDisplaySummary = function (movements) {
 };
 
 calcDisplaySummary(account1.movements);
+
+// Event Handlers
+
+let currentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  // to stop relaod of page, which is a default behaiour of a form or button, when we click, we give the function an event parameter say e and then we write below code (to prevent form from submitting just on click) 
+  e.preventDefault();
+
+  // to matchthe account owner with the actual user input value
+
+  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
+  console.log(currentAccount);
+
+
+});
+
+
+
+
 
 
 
