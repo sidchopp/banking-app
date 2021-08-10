@@ -83,7 +83,11 @@ displayMovements(account1.movements);
 
 const createUsernames = function (accts) {
   accts.forEach(function (acc) {
-    acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
   });
 };
 
@@ -105,23 +109,26 @@ calcDisplayBalance(account1.movements);
 const calcDisplaySummary = function (movements) {
   // to display deposited amount in an acoount on webpage
 
-  const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = ` ${incomes} €`
   // to display thr total amount which goes out of an acoount
 
-  const out = movements.filter(mov => mov < 0).reduce((acc, mov) => acc + mov, 0);
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
   // We take the absolue value of the negative total amount , hence used math.abs()
   labelSumOut.textContent = ` ${Math.abs(out)} €`
 
   // to calculate the interest of 1.2% ,say on each deposit and then get the total interest
 
-  const interest = movements.filter(mov => mov > 0).map(deposit => deposit * 1.2 / 100).reduce((acc, int) => acc + int, 0);
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => deposit * 1.2 / 100)
+    .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = ` ${interest} €`;
-
-
-}
-
-
+};
 
 calcDisplaySummary(account1.movements);
 
