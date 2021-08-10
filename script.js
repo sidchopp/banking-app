@@ -106,17 +106,17 @@ const calcDisplayBalance = function (movements) {
 //calcDisplayBalance(account1.movements);
 
 
-
-const calcDisplaySummary = function (movements) {
+// here in summary we are not just taking movements but the entire account as interest rate in each account is different
+const calcDisplaySummary = function (acc) {
   // to display deposited amount in an acount on webpage
 
-  const incomes = movements
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = ` ${incomes} €`
   // to display thr total amount which goes out of an acoount
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   // We take the absolue value of the negative total amount , hence used math.abs()
@@ -124,9 +124,9 @@ const calcDisplaySummary = function (movements) {
 
   // to calculate the interest of 1.2% ,say on each deposit and then get the total interest
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => deposit * 1.2 / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     // to include that interest is given ONLY when the deposited amount is atleast 1
     .filter((int, i, arr) => {
       return int >= 1;
@@ -168,7 +168,8 @@ btnLogin.addEventListener('click', function (e) {
     //Display balance of that account
     calcDisplayBalance(currentAccount.movements);
     // Display summary of that account  
-    calcDisplaySummary(currentAccount.movements);
+    // Here we have called the whole currentAccount beacuse if we go back to where we have defined this function, we will find that we have argument 'acc' in the 'calcDisplaySummary'
+    calcDisplaySummary(currentAccount);
   }
 
 
