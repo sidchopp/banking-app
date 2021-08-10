@@ -77,7 +77,8 @@ const displayMovements = function (movements) {
   })
 };
 // calling the above function for 'account1' object and its 'movement' property
-displayMovements(account1.movements);
+// we are not calling this function here but with LogIn button, so commenting it
+//displayMovements(account1.movements);
 
 // to create a new property called "username" in each account
 
@@ -101,13 +102,13 @@ const calcDisplayBalance = function (movements) {
   // console.log(balance);
   labelBalance.textContent = `${balance} €`;
 };
-
-calcDisplayBalance(account1.movements);
+// we are not calling this function here but with LogIn button, so commenting it
+//calcDisplayBalance(account1.movements);
 
 
 
 const calcDisplaySummary = function (movements) {
-  // to display deposited amount in an acoount on webpage
+  // to display deposited amount in an acount on webpage
 
   const incomes = movements
     .filter(mov => mov > 0)
@@ -133,8 +134,8 @@ const calcDisplaySummary = function (movements) {
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = ` ${interest} €`;
 };
-
-calcDisplaySummary(account1.movements);
+// we are not calling this function here but with LogIn button, so commenting it
+//calcDisplaySummary(account1.movements);
 
 // Event Handlers
 
@@ -157,12 +158,14 @@ btnLogin.addEventListener('click', function (e) {
     // Display UI and welcome message with the "first name " of the account owner
     labelWelcome.textContent = ` Wecome back, ${currentAccount.owner.split(' ')[0]}!!`
     containerApp.style.opacity = 100;
+
     // Display movements of that account
+    displayMovements(currentAccount.movements);
 
     //Display balance of that account
-
+    calcDisplayBalance(currentAccount.movements);
     // Display summary of that account  
-
+    calcDisplaySummary(currentAccount.movements);
   }
 
 
