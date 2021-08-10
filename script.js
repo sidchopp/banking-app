@@ -103,33 +103,4 @@ calcDisplayBalance(account1.movements);
 
 
 
-// to convert Euros to USD using MAP method
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-// const euroToUsd = 1.1;
-
-// const movementsUSD = movements.map(function (mov) {
-//   return mov * euroToUsd
-// })
-
-// console.log(movements);
-// console.log(movementsUSD);
-
-// same thing using arrow function
-//const movementsUSDArrow = movements.map(mov => mov * euroToUsd)
-//console.log(movementsUSDArrow);
-
-
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
-
-
-/////////////////////////////////////////////////
 
