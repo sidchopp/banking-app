@@ -149,6 +149,23 @@ btnLogin.addEventListener('click', function (e) {
   currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
   console.log(currentAccount);
 
+  // to match the actual pin with the user input value we use if statement
+  // we use optional chaining(?.) to make sure this if staement works only if the user input matches with one of the acoounts that actually exits
+  // to convert the user input from a string(by defalut) into a number we used Number()
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+
+    // Display UI and welcome message with the "first name " of the account owner
+    labelWelcome.textContent = ` Wecome back, ${currentAccount.owner.split(' ')[0]}!!`
+    containerApp.style.opacity = 100;
+    // Display movements of that account
+
+    //Display balance of that account
+
+    // Display summary of that account  
+
+  }
+
+
 
 });
 
