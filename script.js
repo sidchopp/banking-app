@@ -126,6 +126,10 @@ const calcDisplaySummary = function (movements) {
   const interest = movements
     .filter(mov => mov > 0)
     .map(deposit => deposit * 1.2 / 100)
+    // to include that interest is given ONLY when the deposited amount is atleast 1
+    .filter((int, i, arr) => {
+      return int >= 1;
+    })
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = ` ${interest} €`;
 };
