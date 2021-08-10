@@ -79,6 +79,35 @@ const displayMovements = function (movements) {
 // calling the above function for 'account1' object and its 'movement' property
 displayMovements(account1.movements);
 
+// to create a new property called "usename" in each account
+
+const createUsernames = function (accts) {
+  accts.forEach(function (acc) {
+    acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
+  });
+};
+
+createUsernames(accounts);
+console.log(accounts);
+
+
+
+// to convert Euros to USD using MAP method
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const euroToUsd = 1.1;
+
+// const movementsUSD = movements.map(function (mov) {
+//   return mov * euroToUsd
+// })
+
+// console.log(movements);
+// console.log(movementsUSD);
+
+// same thing using arrow function
+//const movementsUSDArrow = movements.map(mov => mov * euroToUsd)
+//console.log(movementsUSDArrow);
+
+
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -89,10 +118,6 @@ const currencies = new Map([
   ['EUR', 'Euro'],
   ['GBP', 'Pound sterling'],
 ]);
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-
 
 
 /////////////////////////////////////////////////
