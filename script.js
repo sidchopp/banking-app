@@ -69,7 +69,7 @@ const displayMovements = function (movements) {
     const html = `
      <div class="movements__row">
         <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-        <div class="movements__value">${mov}</div>
+        <div class="movements__value">${mov} €</div>
      </div>
     `;
     // to attach the above html onto the webpage
@@ -93,13 +93,21 @@ console.log(accounts);
 // to add the values of movements in a an account and show te total on webpage
 
 const calcDisplayBalance = function (movements) {
-
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   // console.log(balance);
-  labelBalance.textContent = `${balance} EUROS`;
+  labelBalance.textContent = `${balance} €`;
 };
 
 calcDisplayBalance(account1.movements);
+
+// to display deposited amount in an acoount on webpage
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = ` ${incomes} €`
+}
+
+calcDisplaySummary(account1.movements);
 
 
 
