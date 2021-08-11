@@ -95,8 +95,17 @@ const createUsernames = function (accts) {
 createUsernames(accounts);
 //console.log(accounts);
 
-// to add the values of movements in a an account and show te total on webpage
+const updateUi = function (acc) {
+  // Display movements of that account
+  displayMovements(acc.movements);
 
+  //Display balance of that account
+  calcDisplayBalance(acc);
+  // Display summary of that account  
+  // Here we have called the whole currentAccount beacuse if we go back to where we have defined this function, we will find that we have argument 'acc' in the 'calcDisplaySummary'
+  calcDisplaySummary(acc);
+}
+// to add the values of movements in a an account and show te total on webpage
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
@@ -163,14 +172,7 @@ btnLogin.addEventListener('click', function (e) {
     // clear the input fields after login
     inputLoginUsername.value = inputLoginPin.value = '';
 
-    // Display movements of that account
-    displayMovements(currentAccount.movements);
-
-    //Display balance of that account
-    calcDisplayBalance(currentAccount);
-    // Display summary of that account  
-    // Here we have called the whole currentAccount beacuse if we go back to where we have defined this function, we will find that we have argument 'acc' in the 'calcDisplaySummary'
-    calcDisplaySummary(currentAccount);
+    updateUi(currentAccount);
   }
 });
 
@@ -182,6 +184,12 @@ btnTransfer.addEventListener('click', function (e) {
   const receiverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
   console.log(amount, receiverAcc);
 
+  if (amount > 0 && receiverAcc && currentAccount.balance >= amount && receiverAcc?.username !== currentAccount.username) {
+
+    // Doing the tranfer from sender to receiver
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+  }
 })
 
 
