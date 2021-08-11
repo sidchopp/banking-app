@@ -93,7 +93,7 @@ const createUsernames = function (accts) {
 };
 
 createUsernames(accounts);
-console.log(accounts);
+//console.log(accounts);
 
 // to add the values of movements in a an account and show te total on webpage
 
@@ -148,7 +148,7 @@ btnLogin.addEventListener('click', function (e) {
   // to matchthe account owner with the actual user input value
 
   currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
-  console.log(currentAccount);
+  //console.log(currentAccount);
 
   // to match the actual pin with the user input value we use if statement
   // we use optional chaining(?.) to make sure this if staement works only if the user input matches with one of the acoounts that actually exits
@@ -171,10 +171,17 @@ btnLogin.addEventListener('click', function (e) {
     // Here we have called the whole currentAccount beacuse if we go back to where we have defined this function, we will find that we have argument 'acc' in the 'calcDisplaySummary'
     calcDisplaySummary(currentAccount);
   }
-
-
-
 });
+
+// Transfer money from one account to another
+
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
+  console.log(amount, receiverAcc);
+
+})
 
 
 
