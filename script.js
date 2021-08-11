@@ -171,7 +171,7 @@ btnLogin.addEventListener('click', function (e) {
 
     // clear the input fields after login
     inputLoginUsername.value = inputLoginPin.value = '';
-
+    // to update UI
     updateUi(currentAccount);
   }
 });
@@ -189,6 +189,8 @@ btnTransfer.addEventListener('click', function (e) {
     // Doing the tranfer from sender to receiver
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
+    // to update UI
+    updateUi(currentAccount);
   }
 })
 
