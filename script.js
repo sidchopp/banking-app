@@ -97,10 +97,11 @@ createUsernames(accounts);
 
 // to add the values of movements in a an account and show te total on webpage
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
   // console.log(balance);
-  labelBalance.textContent = `${balance} €`;
+  labelBalance.textContent = `${acc.balance} €`;
 };
 // we are not calling this function here but with LogIn button, so commenting it
 //calcDisplayBalance(account1.movements);
@@ -166,7 +167,7 @@ btnLogin.addEventListener('click', function (e) {
     displayMovements(currentAccount.movements);
 
     //Display balance of that account
-    calcDisplayBalance(currentAccount.movements);
+    calcDisplayBalance(currentAccount);
     // Display summary of that account  
     // Here we have called the whole currentAccount beacuse if we go back to where we have defined this function, we will find that we have argument 'acc' in the 'calcDisplaySummary'
     calcDisplaySummary(currentAccount);
