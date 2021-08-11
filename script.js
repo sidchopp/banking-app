@@ -194,9 +194,26 @@ btnTransfer.addEventListener('click', function (e) {
     // to update UI
     updateUi(currentAccount);
   }
+});
 
+// "Close Account" Button functionalty
 
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === currentAccount.pin) {
+    const index = accounts.findIndex(acc => acc.username === currentAccount.username)
+    console.log(index);
+    // to delete the account which matched with user inputs
+    accounts.splice(index, 1)
+    // after deleting that account, Hide UI
+    containerApp.style.opacity = 0;
+  };
+  // to clean the input fields after deleting the account
+  inputCloseUsername.value = inputClosePin.value = '';
 })
+
+
 
 
 
