@@ -155,7 +155,7 @@ btnLogin.addEventListener('click', function (e) {
   // to stop relaod of page, which is a default behaiour of a form or button, when we click, we give the function an event parameter say e and then we write below code (to prevent form from submitting just on click) 
   e.preventDefault();
 
-  // to matchthe account owner with the actual user input value
+  // to match the account owner with the actual user input value
 
   currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
   //console.log(currentAccount);
@@ -194,6 +194,23 @@ btnTransfer.addEventListener('click', function (e) {
     // to update UI
     updateUi(currentAccount);
   }
+});
+
+// "Request Loan" button functionality
+
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+  // using 'some' method to check if any movement amount is >= 10 percent of the loan amount the user is asking for
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // add movement
+    currentAccount.movements.push(amount);
+    // update ui
+    updateUi(currentAccount);
+  }
+  // to clean the input fields after transaction
+  inputLoanAmount.value = '';
 });
 
 // "Close Account" Button functionalty
