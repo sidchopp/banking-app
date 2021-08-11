@@ -182,7 +182,9 @@ btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
   const amount = Number(inputTransferAmount.value);
   const receiverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
-  console.log(amount, receiverAcc);
+  //console.log(amount, receiverAcc);
+  // to clean the input fields after transaction
+  inputTransferAmount.value = inputTransferTo.value = '';
 
   if (amount > 0 && receiverAcc && currentAccount.balance >= amount && receiverAcc?.username !== currentAccount.username) {
 
@@ -192,6 +194,8 @@ btnTransfer.addEventListener('click', function (e) {
     // to update UI
     updateUi(currentAccount);
   }
+
+
 })
 
 
