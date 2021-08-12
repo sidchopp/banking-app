@@ -256,12 +256,13 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Number(inputLoanAmount.value);
   // using 'some' method to check if any movement amount is >= 10 percent of the loan amount the user is asking for
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // add movement
-    currentAccount.movements.push(amount);
-    // Add loan date
-    currentAccount.movementsDates.push(new Date().toISOString());
-    // update ui
-    updateUi(currentAccount);
+    setTimeout(function () {// add movement
+      currentAccount.movements.push(amount);
+      // Add loan date
+      currentAccount.movementsDates.push(new Date().toISOString());
+      // update ui
+      updateUi(currentAccount)
+    }, 5000);
   }
 
 
