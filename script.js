@@ -61,10 +61,17 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovements = function (movements) {
+// the 2nd parameter is setting the sort as false by default
+const displayMovements = function (movements, sort = false) {
   // to display 'none' or 'empty page' initially before we push in the values from some account
   containerMovements.innerHTML = '';
-  movements.forEach(function (mov, i) {
+
+  // to sort movements in ascending order
+  // slice to create a shallow copy of movements( other wise sort will mutate it permanently)
+  // now we are saying that is the sort parameter is true, then movs equal "movements.slice().sort((a, b) => a - b)" else movs =  movements( which by default means sort false)
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal'
     const html = `
      <div class="movements__row">
@@ -228,6 +235,18 @@ btnClose.addEventListener('click', function (e) {
   };
   // to clean the input fields after deleting the account
   inputCloseUsername.value = inputClosePin.value = '';
+});
+
+// Sort in ascending order functionality
+// to display the movements in an unsorted way when the page uploads initially
+
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  // the 2nd parameter making sorted back to true when we click the sort button
+  displayMovements(currentAccount.movements, !sorted);
+  // to make sure to flip the sort order EVERY time we click it
+  sorted = !sorted;
 })
 
 
