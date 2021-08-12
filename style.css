@@ -312,6 +312,6 @@ h2 {
   align-items: baseline;
 }
 
-.double {
-  border-style: groove;
+.hidden {
+  display: none;
 }

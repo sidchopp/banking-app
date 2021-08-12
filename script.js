@@ -55,6 +55,7 @@ const labelSumIn = document.querySelector('.summary__value--in');
 const labelSumOut = document.querySelector('.summary__value--out');
 const labelSumInterest = document.querySelector('.summary__value--interest');
 const labelTimer = document.querySelector('.timer');
+const footerDisplay = document.querySelector('.footer');
 
 const containerApp = document.querySelector('.app');
 const containerMovements = document.querySelector('.movements');
@@ -252,6 +253,7 @@ btnLogin.addEventListener('click', function (e) {
 
     // to update UI
     updateUi(currentAccount);
+    footerDisplay.classList.add('hidden')
   } else {
     labelWelcome.textContent = ` Username or Pin is INCORRECT!!`
   }
