@@ -81,7 +81,9 @@ const displayMovements = function (acc, sort = false) {
   // to sort movements in ascending order
   // slice to create a shallow copy of movements( other wise sort will mutate it permanently)
   // now we are saying that is the sort parameter is true, then movs equal "movements.slice().sort((a, b) => a - b)" else movs =  movements( which by default means sort false)
-  const movs = sort ? acc.movements.slice().sort((a, b) => a - b) : acc.movements;
+  const movs = sort
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
 
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal'
@@ -108,31 +110,6 @@ const displayMovements = function (acc, sort = false) {
 // we are not calling this function here but with LogIn button, so commenting it
 //displayMovements(account1.movements);
 
-// to create a new property called "username" in each account
-
-const createUsernames = function (accts) {
-  accts.forEach(function (acc) {
-    acc.username = acc.owner
-      .toLowerCase()
-      .split(' ')
-      .map(name => name[0])
-      .join('');
-  });
-};
-
-createUsernames(accounts);
-//console.log(accounts);
-
-const updateUi = function (acc) {
-  // Display movements of that account
-  displayMovements(acc);
-
-  //Display balance of that account
-  calcDisplayBalance(acc);
-  // Display summary of that account  
-  // Here we have called the whole currentAccount beacuse if we go back to where we have defined this function, we will find that we have argument 'acc' in the 'calcDisplaySummary'
-  calcDisplaySummary(acc);
-}
 // to add the values of movements in a an account and show te total on webpage
 
 const calcDisplayBalance = function (acc) {
@@ -140,9 +117,6 @@ const calcDisplayBalance = function (acc) {
   // console.log(balance);
   labelBalance.textContent = `${acc.balance} €`;
 };
-// we are not calling this function here but with LogIn button, so commenting it
-//calcDisplayBalance(account1.movements);
-
 
 // here in summary we are not just taking movements but the entire account as interest rate in each account is different
 const calcDisplaySummary = function (acc) {
@@ -172,6 +146,38 @@ const calcDisplaySummary = function (acc) {
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = ` ${interest} €`;
 };
+
+// to create a new property called "username" in each account
+
+const createUsernames = function (accts) {
+  accts.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+createUsernames(accounts);
+//console.log(accounts);
+
+const updateUi = function (acc) {
+  // Display movements of that account
+  displayMovements(acc);
+
+  //Display balance of that account
+  calcDisplayBalance(acc);
+  // Display summary of that account  
+  // Here we have called the whole currentAccount beacuse if we go back to where we have defined this function, we will find that we have argument 'acc' in the 'calcDisplaySummary'
+  calcDisplaySummary(acc);
+}
+
+// we are not calling this function here but with LogIn button, so commenting it
+//calcDisplayBalance(account1.movements);
+
+
+
 // we are not calling this function here but with LogIn button, so commenting it
 //calcDisplaySummary(account1.movements);
 
