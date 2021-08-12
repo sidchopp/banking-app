@@ -166,8 +166,10 @@ containerApp.style.opacity = 100;
 const now = new Date();
 
 // For day/month/year hour:minute format
-const day = now.getDate();
-const month = now.getMonth() + 1; // As month is 0 based
+// const day = now.getDate();
+// to apply padstart on day and month
+const day = `${now.getDate()}`.padStart(2, 0);
+const month = `${now.getMonth() + 1}`.padStart(2, 0); // As month is 0 based
 const year = now.getUTCFullYear();
 const hour = now.getHours();
 const minute = now.getMinutes();
