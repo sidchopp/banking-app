@@ -166,7 +166,7 @@ btnLogin.addEventListener('click', function (e) {
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
 
     // Display UI and welcome message with the "first name " of the account owner
-    labelWelcome.textContent = ` Wecome back, ${currentAccount.owner.split(' ')[0]}!!`
+    labelWelcome.textContent = ` Welcome back, ${currentAccount.owner.split(' ')[0]}!!`
     containerApp.style.opacity = 100;
 
     // clear the input fields after login
