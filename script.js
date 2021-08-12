@@ -179,9 +179,9 @@ const calcDisplaySummary = function (acc) {
 let currentAccount;
 
 // FAKE always logged in
-currentAccount = account1;
-updateUi(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUi(currentAccount);
+// containerApp.style.opacity = 100;
 
 // creating present date
 const now = new Date();
