@@ -192,8 +192,8 @@ const now = new Date();
 const day = `${now.getDate()}`.padStart(2, 0);
 const month = `${now.getMonth() + 1}`.padStart(2, 0); // As month is 0 based
 const year = now.getUTCFullYear();
-const hour = now.getHours();
-const minute = now.getMinutes();
+const hour = `${now.getHours()}`.padStart(2, 0);
+const minute = `${now.getMinutes()}`.padStart(2, 0);
 labelDate.textContent = `${day}/${month}/${year}, ${hour}:${minute}`;
 
 
