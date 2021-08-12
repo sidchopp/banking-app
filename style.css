@@ -309,6 +309,7 @@ h2 {
   background-color: white;
   color: black;
   text-align: center;
+  align-items: baseline;
 }
 
 .double {
