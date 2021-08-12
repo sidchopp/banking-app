@@ -131,7 +131,7 @@ const calcDisplaySummary = function (acc) {
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = ` ${incomes} €`
-  // to display thr total amount which goes out of an acoount
+  // to display the total amount which goes out of an acoount
 
   const out = acc.movements
     .filter(mov => mov < 0)
@@ -180,6 +180,8 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     // to update UI
     updateUi(currentAccount);
+  } else {
+    labelWelcome.textContent = ` Username or Pin is INCORRECT!!`
   }
 });
 
