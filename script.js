@@ -155,8 +155,24 @@ const calcDisplaySummary = function (acc) {
 //calcDisplaySummary(account1.movements);
 
 // Event Handlers
-
 let currentAccount;
+
+// FAKE always logged in
+currentAccount = account1;
+updateUi(currentAccount);
+containerApp.style.opacity = 100;
+
+// creating present date
+const now = new Date();
+
+// For day/month/year hour:minute format
+const day = now.getDate();
+const month = now.getMonth() + 1; // As month is 0 based
+const year = now.getUTCFullYear();
+const hour = now.getHours();
+const minute = now.getMinutes();
+labelDate.textContent = `${day}/${month}/${year}, ${hour}:${minute}`;
+
 
 btnLogin.addEventListener('click', function (e) {
   // to stop relaod of page, which is a default behaiour of a form or button, when we click, we give the function an event parameter say e and then we write below code (to prevent form from submitting just on click) 
