@@ -171,18 +171,40 @@ const updateUi = function (acc) {
   // Display summary of that account  
   // Here we have called the whole currentAccount beacuse if we go back to where we have defined this function, we will find that we have argument 'acc' in the 'calcDisplaySummary'
   calcDisplaySummary(acc);
-}
+};
 
-// we are not calling this function here but with LogIn button, so commenting it
-//calcDisplayBalance(account1.movements);
+const startLogOutTimer = function () {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
 
+    // In each call, print the remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
 
+    // When 0 seconds, stop timer and log out user
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
 
-// we are not calling this function here but with LogIn button, so commenting it
-//calcDisplaySummary(account1.movements);
+    // Decrease 1s
+    time--;
+  };
 
+  // Set time to 5 minutes
+  let time = 120;
+
+  // Call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+
+  return timer;
+};
+
+//////////////////////////////
 // Event Handlers
-let currentAccount;
+let currentAccount, timer;
 
 // FAKE always logged in
 // currentAccount = account1;
@@ -223,6 +245,11 @@ btnLogin.addEventListener('click', function (e) {
 
     // clear the input fields after login
     inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+    // Timer
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
+
     // to update UI
     updateUi(currentAccount);
   } else {
